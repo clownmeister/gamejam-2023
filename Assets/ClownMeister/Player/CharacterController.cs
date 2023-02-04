@@ -1,27 +1,49 @@
+using ClownMeister.Manager;
 using UnityEngine;
 
 namespace ClownMeister.Player
 {
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(InputHandler))]
+    [RequireComponent(typeof(CapsuleCollider))]
     public class CharacterController : MonoBehaviour
     {
-        [SerializeField] private bool rotateTowardMouse;
-
-        [SerializeField] private float movementSpeed;
-        [SerializeField] private float rotationSpeed;
-        [SerializeField] private float jumpHeight;
-
         [SerializeField] private UnityEngine.Camera mainCamera;
 
-        private InputHandler input;
+        [Header("Movement")]
+        [SerializeField] private bool rotateTowardMouse;
+        [SerializeField] private float movementSpeed;
+        [SerializeField] private float rotationSpeed;
+        [Header("Jump")]
+        [Tooltip("In seconds")]
+        [SerializeField] private float jumpCooldown;
+        [SerializeField] private float jumpHeight;
+        [SerializeField] private LayerMask jumpRayMask;
+        [SerializeField] private float rayLenght;
+
+        [SerializeField]private InputManager input;
         private Rigidbody body;
+        private Collider bodyCollider;
+
         private bool canJump;
+        private float nextJump;
+
+        private void Start()
+        {
+            this.nextJump = 0;
+            this.canJump = false;
+        }
 
         private void Awake()
         {
-            this.input = GetComponent<InputHandler>();
             this.body = GetComponent<Rigidbody>();
+            this.bodyCollider = GetComponent<CapsuleCollider>();
+        }
+
+        private void Update()
+        {
+            if (this.input.Jump) {
+                Jump();
+            }
         }
 
         private void FixedUpdate()
@@ -32,7 +54,7 @@ namespace ClownMeister.Player
             if (!this.rotateTowardMouse) RotateTowardMovementVector(movementVector);
             if (this.rotateTowardMouse) RotateFromMouseVector();
 
-            if (Input.GetButtonDown("Jump")) Jump();
+
         }
 
         private void RotateFromMouseVector()
@@ -65,17 +87,19 @@ namespace ClownMeister.Player
 
         private void Jump()
         {
-            Debug.Log("jump");
+            if (this.nextJump > Time.time) return;
             if (!this.canJump) CheckGroundStatus();
             if (!this.canJump) return;
 
             this.canJump = false;
+            this.nextJump = Time.time + this.jumpCooldown;
             this.body.AddForce(0, this.jumpHeight * this.body.mass, 0, ForceMode.Impulse);
         }
 
         private void CheckGroundStatus()
         {
-            if (!Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, 5f)) {
+            Vector3 rayPos = new(transform.position.x, this.bodyCollider.bounds.min.y + 0.05f, transform.position.z);
+            if (!Physics.Raycast(new Ray(rayPos, Vector3.down), out RaycastHit hit, this.rayLenght, this.jumpRayMask)) {
                 this.canJump = false;
                 return;
             }
