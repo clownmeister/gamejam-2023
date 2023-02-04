@@ -1,4 +1,4 @@
-using ClownMeister.Manager;
+using ClownMeister.Input;
 using UnityEngine;
 
 namespace ClownMeister.Player

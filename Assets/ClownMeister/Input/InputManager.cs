@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ClownMeister.Manager
+namespace ClownMeister.Input
 {
     public class InputManager : MonoBehaviour
     {
@@ -17,19 +17,19 @@ namespace ClownMeister.Manager
         // Update is called once per frame
         private void Update()
         {
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
+            float h = UnityEngine.Input.GetAxis("Horizontal");
+            float v = UnityEngine.Input.GetAxis("Vertical");
             InputVector = new Vector2(h, v);
 
-            MousePosition = Input.mousePosition;
+            MousePosition = UnityEngine.Input.mousePosition;
 
-            Jump = Input.GetAxis("Jump") > 0;
+            Jump = UnityEngine.Input.GetAxis("Jump") > 0;
 
-            float dh = Input.GetAxis("DHorizontal");
-            float dv = Input.GetAxis("DVertical");
+            float dh = UnityEngine.Input.GetAxis("DHorizontal");
+            float dv = UnityEngine.Input.GetAxis("DVertical");
             Dpad = new Vector2(dh, dv);
 
-            Scroll = -Input.GetAxis("Mouse ScrollWheel");
+            Scroll = UnityEngine.Input.GetAxis("Mouse ScrollWheel");
         }
     }
 }

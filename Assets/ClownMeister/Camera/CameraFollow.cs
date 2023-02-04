@@ -1,4 +1,4 @@
-using ClownMeister.Manager;
+using ClownMeister.Input;
 using UnityEngine;
 
 namespace ClownMeister.Camera
@@ -21,7 +21,7 @@ namespace ClownMeister.Camera
             float scrollY = this.input.Scroll * this.input.scrollSensitivity + this.input.Dpad.y * this.input.scrollSensitivityController;
 
             if (scrollY == 0) return;
-            float scrollOffset = this.offsetMultiplier + scrollY * this.zoomSensitivity;
+            float scrollOffset = this.offsetMultiplier + -scrollY * this.zoomSensitivity;
             this.offsetMultiplier = scrollOffset switch
             {
                 < 0 => 0,
