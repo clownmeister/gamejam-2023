@@ -18,7 +18,7 @@ namespace ClownMeister.Player
 
             MousePosition = Input.mousePosition;
 
-            Jump = Input.GetButtonDown("Jump");
+            Jump = Input.GetAxis("Jump") > 0;
         }
     }
 }

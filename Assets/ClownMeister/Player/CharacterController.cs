@@ -32,7 +32,7 @@ namespace ClownMeister.Player
             if (!this.rotateTowardMouse) RotateTowardMovementVector(movementVector);
             if (this.rotateTowardMouse) RotateFromMouseVector();
 
-            if (this.input.Jump) Jump();
+            if (Input.GetButtonDown("Jump")) Jump();
         }
 
         private void RotateFromMouseVector()
@@ -65,16 +65,17 @@ namespace ClownMeister.Player
 
         private void Jump()
         {
+            Debug.Log("jump");
             if (!this.canJump) CheckGroundStatus();
             if (!this.canJump) return;
 
             this.canJump = false;
-            this.body.AddForce(0, this.jumpHeight, 0, ForceMode.Impulse);
+            this.body.AddForce(0, this.jumpHeight * this.body.mass, 0, ForceMode.Impulse);
         }
 
         private void CheckGroundStatus()
         {
-            if (!Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, .01f)) {
+            if (!Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, 5f)) {
                 this.canJump = false;
                 return;
             }

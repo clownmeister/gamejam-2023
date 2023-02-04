@@ -530,8 +530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateTowardMouse: 0
   movementSpeed: 10
-  rotationSpeed: 10
-  jumpHeight: 0
+  rotationSpeed: 5
+  jumpHeight: 5
   mainCamera: {fileID: 912969881}
 --- !u!114 &593937044
 MonoBehaviour:
