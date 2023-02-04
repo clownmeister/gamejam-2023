@@ -8,6 +8,7 @@ namespace ClownMeister.Player
 
         public Vector3 MousePosition { get; private set; }
 
+        public bool Jump { get; private set; }
         // Update is called once per frame
         private void Update()
         {
@@ -16,6 +17,8 @@ namespace ClownMeister.Player
             InputVector = new Vector2(h, v);
 
             MousePosition = Input.mousePosition;
+
+            Jump = Input.GetButtonDown("Jump");
         }
     }
 }

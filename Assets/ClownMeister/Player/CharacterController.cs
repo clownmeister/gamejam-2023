@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace ClownMeister.Player
 {
+    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(InputHandler))]
     public class CharacterController : MonoBehaviour
     {
@@ -9,13 +10,18 @@ namespace ClownMeister.Player
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private float jumpHeight;
 
         [SerializeField] private UnityEngine.Camera mainCamera;
+
         private InputHandler input;
+        private Rigidbody body;
+        private bool canJump;
 
         private void Awake()
         {
             this.input = GetComponent<InputHandler>();
+            this.body = GetComponent<Rigidbody>();
         }
 
         private void FixedUpdate()
@@ -25,6 +31,8 @@ namespace ClownMeister.Player
 
             if (!this.rotateTowardMouse) RotateTowardMovementVector(movementVector);
             if (this.rotateTowardMouse) RotateFromMouseVector();
+
+            if (this.input.Jump) Jump();
         }
 
         private void RotateFromMouseVector()
@@ -53,6 +61,25 @@ namespace ClownMeister.Player
             if (movementDirection.magnitude == 0) return;
             Quaternion rotation = Quaternion.LookRotation(movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, this.rotationSpeed);
+        }
+
+        private void Jump()
+        {
+            if (!this.canJump) CheckGroundStatus();
+            if (!this.canJump) return;
+
+            this.canJump = false;
+            this.body.AddForce(0, this.jumpHeight, 0, ForceMode.Impulse);
+        }
+
+        private void CheckGroundStatus()
+        {
+            if (!Physics.Raycast(new Ray(transform.position, Vector3.down), out RaycastHit hit, .01f)) {
+                this.canJump = false;
+                return;
+            }
+
+            this.canJump = hit.collider != null;
         }
     }
 }
