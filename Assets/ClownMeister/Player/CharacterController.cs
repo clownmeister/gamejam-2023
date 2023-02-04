@@ -18,7 +18,7 @@ namespace ClownMeister.Player
             this.input = GetComponent<InputHandler>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             Vector3 targetVector = new(this.input.InputVector.x, 0, this.input.InputVector.y);
             Vector3 movementVector = MoveTowardTarget(targetVector);
