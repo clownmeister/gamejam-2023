@@ -1,6 +1,5 @@
 using ClownMeister.Manager;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace ClownMeister.Camera
 {
@@ -8,6 +7,7 @@ namespace ClownMeister.Camera
     {
         public Transform target;
         public float smoothSpeed = .13f;
+        public float zoomSensitivity = 1;
         [SerializeField]private float offsetMultiplier = .5f;
 
         public Vector3 offset;
@@ -21,7 +21,7 @@ namespace ClownMeister.Camera
             float scrollY = this.input.Scroll * this.input.scrollSensitivity + this.input.Dpad.y * this.input.scrollSensitivityController;
 
             if (scrollY == 0) return;
-            float scrollOffset = this.offsetMultiplier + scrollY;
+            float scrollOffset = this.offsetMultiplier + scrollY * this.zoomSensitivity;
             this.offsetMultiplier = scrollOffset switch
             {
                 < 0 => 0,
