@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ClownMeister.Util;
 using UnityEngine;
 
@@ -6,7 +7,15 @@ namespace ClownMeister.Navigation
 {
     public class VehicleNode : MonoBehaviour
     {
-        public VehicleNode nextNode = null;
+        public bool connectAutomatically = true;
+        public VehicleNodeType nodeType = VehicleNodeType.Normal;
+        public List<VehicleNode> traversableNeighbours = new();
+
+        private static readonly Color NormalColor = new(0.17f, 0.75f, 0f, 0.5f);
+        private static readonly Color DespawnColor = new(1, 0, 0, 0.5f);
+        private static readonly Color SpawnColor = new(0, 0, 1, 0.5f);
+
+        public float speedModifier = 1;
 
         private void Awake()
         {
@@ -15,18 +24,27 @@ namespace ClownMeister.Navigation
 
         private void Start()
         {
-            if (this.nextNode == null) this.nextNode = VehicleNodeManager.GetClosestNode(transform.position);
+            if (this.connectAutomatically) this.traversableNeighbours.Add(VehicleNodeManager.GetClosestNode(this));
         }
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = new Color(0.17f, 0.75f, 0f, 0.5f);
+            Gizmos.color = this.nodeType switch
+            {
+                VehicleNodeType.Normal => NormalColor,
+                VehicleNodeType.Start => SpawnColor,
+                VehicleNodeType.End => DespawnColor,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
             Gizmos.DrawCube(transform.position, new Vector3(1, 1, 1));
 
-            if (this.nextNode == null) return;
+            if (this.traversableNeighbours == null) return;
 
             Gizmos.color = new Color(0.95f, 1f, 0.05f);
-            GizmoUtils.DrawArrow(transform.position, this.nextNode.transform, arrowHeadLength: 2);
+            foreach (VehicleNode traversableNeighbour in this.traversableNeighbours) {
+                GizmoUtils.DrawArrow(transform.position, traversableNeighbour.transform, arrowHeadLength: 2);
+            }
         }
     }
 }

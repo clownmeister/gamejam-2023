@@ -1,5 +1,8 @@
+using System;
 using ClownMeister.Input;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace ClownMeister.Camera
 {
@@ -15,6 +18,7 @@ namespace ClownMeister.Camera
         public Vector3 offsetMax = new Vector3(0, 30, -15);
 
         [SerializeField]private InputManager input;
+
 
         private void Update()
         {

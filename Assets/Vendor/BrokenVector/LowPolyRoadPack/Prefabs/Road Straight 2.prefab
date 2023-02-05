@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3313066}
   - component: {fileID: 2370018}
   - component: {fileID: 6424298}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Road Straight 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1708920924510740785}
   - {fileID: 4343517469163840552}
+  - {fileID: 1708920924510740785}
   - {fileID: 8893549526323600847}
   - {fileID: 3203518867098525334}
   - {fileID: 2156970875551509998}
@@ -158,7 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9038276bb6d2f41866a701f374eb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 0}
+  connectAutomatically: 1
+  traversableNeighbours: []
+  speedModifier: 1
 --- !u!1 &3330535065938179431
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9038276bb6d2f41866a701f374eb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 0}
+  connectAutomatically: 1
+  traversableNeighbours: []
+  speedModifier: 1
 --- !u!1 &4050065977146407101
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9038276bb6d2f41866a701f374eb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 215196009041153020}
+  connectAutomatically: 0
+  traversableNeighbours:
+  - {fileID: 215196009041153020}
+  speedModifier: 1
 --- !u!1 &5663805325564305125
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9038276bb6d2f41866a701f374eb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextNode: {fileID: 230799875060500821}
+  connectAutomatically: 0
+  traversableNeighbours:
+  - {fileID: 230799875060500821}
+  speedModifier: 1
 --- !u!1 &7044708147761224060
 GameObject:
   m_ObjectHideFlags: 0
