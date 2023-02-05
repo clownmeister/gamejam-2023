@@ -5,7 +5,7 @@ namespace ClownMeister.Player
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(CapsuleCollider))]
-    public class CharacterController : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private UnityEngine.Camera mainCamera;
 
