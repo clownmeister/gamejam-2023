@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using ClownMeister.Player;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ClownMeister
 {
@@ -10,6 +13,13 @@ namespace ClownMeister
         public static GameManager Instance;
         public PlayerController player;
         public bool gameOver;
+
+        public List<Transform> beerSpawns;
+        public static List<GameObject> BeerList;
+        public int maxBeers;
+        public GameObject beerPrefab;
+        public float beerSpawnCooldown;
+        public float nextBeerSpawnAt;
 
         [HideInInspector]public float energy;
         public float energyConsumptionPerSecond = 5;
@@ -32,8 +42,20 @@ namespace ClownMeister
             this.energy = MaxEnergy;
         }
 
+        private void SpawnBeer()
+        {
+            Transform spawn = this.beerSpawns[Random.Range(0, this.beerSpawns.Count)];
+            GameObject beer = Instantiate(this.beerPrefab, spawn.position, quaternion.identity);
+            BeerList.Add(beer);
+        }
+
         private void Update()
         {
+            if (this.nextBeerSpawnAt < Time.time) {
+                SpawnBeer();
+                this.nextBeerSpawnAt = Time.time + this.beerSpawnCooldown;
+            }
+            
             if (this.nextEnergyConsumption < Time.time) {
                 this.nextEnergyConsumption = Time.time + this.energyTickSeconds;
                 float amount = this.energy - this.energyConsumptionPerSecond;

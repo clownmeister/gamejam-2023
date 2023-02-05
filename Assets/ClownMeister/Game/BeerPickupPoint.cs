@@ -15,6 +15,7 @@ namespace ClownMeister.Game
             if (!other.CompareTag("Player")) return;
             GameManager.Instance.AddPoints(this.scorePointsAwarded);
             GameManager.Instance.AddEnergy(this.energyAwarded);
+            GameManager.BeerList.Remove(gameObject);
             Instantiate(this.particlePrefabPickup, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
