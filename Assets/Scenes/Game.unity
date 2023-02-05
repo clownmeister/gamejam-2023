@@ -6751,8 +6751,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 8X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
-  m_sharedMaterial: {fileID: 5386270372616174827, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
+  m_sharedMaterial: {fileID: -2900612685848827925, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7482,9 +7482,9 @@ MonoBehaviour:
   - {fileID: 2043863667}
   - {fileID: 1518438243}
   - {fileID: 943742736}
-  maxBeers: 10
+  maxBeers: 5
   beerPrefab: {fileID: 949944929890600612, guid: 9a6880e6cc8304d439d1920878405f45, type: 3}
-  beerSpawnCooldown: 5
+  beerSpawnCooldown: 3
   nextBeerSpawnAt: 0
   energy: 0
   energyConsumptionPerSecond: 3
@@ -8769,8 +8769,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'SCORE: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
-  m_sharedMaterial: {fileID: 5386270372616174827, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
+  m_sharedMaterial: {fileID: -2900612685848827925, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10231,8 +10231,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
-  m_sharedMaterial: {fileID: 5386270372616174827, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
+  m_sharedMaterial: {fileID: -2900612685848827925, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14114,8 +14114,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'MULTIPLIER: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
-  m_sharedMaterial: {fileID: 5386270372616174827, guid: b331b8ba30b682d44b5936cc126043b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
+  m_sharedMaterial: {fileID: -2900612685848827925, guid: b0313391b3352f94f83ee38f2b1c9d57, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

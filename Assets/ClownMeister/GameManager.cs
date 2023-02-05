@@ -16,7 +16,7 @@ namespace ClownMeister
         public bool gameOver;
 
         public List<Transform> beerSpawns;
-        public static List<GameObject> BeerList;
+        public static List<GameObject> BeerList = new();
         public int maxBeers;
         public GameObject beerPrefab;
         public float beerSpawnCooldown;
@@ -33,7 +33,7 @@ namespace ClownMeister
         public int multiplier = 1;
 
         public const int MultiplierPerScore = 300;
-        public const float MultiplierChainCooldown = 5;
+        public const float MultiplierChainCooldown = 15;
         public const int MaxMultiplier = 8;
         public const float MaxEnergy = 100;
 
@@ -85,8 +85,8 @@ namespace ClownMeister
             }
             
             this.multiplierResetAt = Time.time + MultiplierChainCooldown;
-            this.scoreChained += amount;
-            this.score += amount;
+            this.scoreChained += amount * this.multiplier;
+            this.score += amount * this.multiplier;
 
             int multiplierCalculated = this.scoreChained / MultiplierPerScore;
             this.multiplier = multiplierCalculated switch
