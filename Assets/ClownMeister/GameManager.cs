@@ -45,6 +45,9 @@ namespace ClownMeister
 
         private void SpawnBeer()
         {
+            if (BeerList.Count > this.maxBeers) {
+                return;
+            }
             Transform spawn = this.beerSpawns[Random.Range(0, this.beerSpawns.Count)];
             GameObject beer = Instantiate(this.beerPrefab, spawn.position, quaternion.identity);
             BeerList.Add(beer);

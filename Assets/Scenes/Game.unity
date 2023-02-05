@@ -7482,9 +7482,9 @@ MonoBehaviour:
   - {fileID: 2043863667}
   - {fileID: 1518438243}
   - {fileID: 943742736}
-  maxBeers: 0
-  beerPrefab: {fileID: 0}
-  beerSpawnCooldown: 0
+  maxBeers: 10
+  beerPrefab: {fileID: 949944929890600612, guid: 9a6880e6cc8304d439d1920878405f45, type: 3}
+  beerSpawnCooldown: 5
   nextBeerSpawnAt: 0
   energy: 0
   energyConsumptionPerSecond: 3
