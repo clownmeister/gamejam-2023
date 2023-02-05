@@ -4,6 +4,7 @@ using ClownMeister.Player;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace ClownMeister
@@ -71,6 +72,7 @@ namespace ClownMeister
         private void GameOver()
         {
             Debug.Log("Game over!");
+            SceneManager.LoadScene(0);
         }
 
         public void AddPoints(int amount)
