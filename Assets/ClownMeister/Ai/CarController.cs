@@ -18,6 +18,9 @@ namespace ClownMeister.Ai
 
         private CarNavigator navigator;
 
+        private int stuckCount = 0;
+        public int maxStuckCount = 3;
+
         private void Awake()
         {
             this.navigator = GetComponent<CarNavigator>();
@@ -39,23 +42,37 @@ namespace ClownMeister.Ai
 
         private void Update()
         {
+            //stuck logic
+            if (this.stuckCount >= this.maxStuckCount) {
+                VehicleManager.RemoveCar(gameObject);
+                Destroy(gameObject);
+                return;
+            }
+
             if (this.navigator.stuck) {
+                this.stuckCount++;
                 UpdateTarget();
             }
 
+            //static car
             if (!this.roaming) return;
 
+            //init
             if (this.nextTarget == null) {
                 UpdateTarget();
             }
 
+            //still navigating
+            //main loop
             if (this.navigator.IsNavigating()) return;
 
             if (this.nextTarget.nodeType == VehicleNodeType.End) {
+                VehicleManager.RemoveCar(gameObject);
                 Destroy(gameObject);
                 return;
             }
-            
+
+            this.stuckCount = 0;
             var available = this.nextTarget.traversableNeighbours;
             UpdateTarget(available[Random.Range(0,available.Count)]);
         }

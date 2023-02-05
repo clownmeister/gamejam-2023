@@ -94,7 +94,6 @@ namespace ClownMeister.Navigation
             UpdateWheelPose(this.frontRightWheel, this.frontRightWheelTransform);
 
             UpdateWheelPose(this.rearRightWheel, this.rearRightWheelTransform);
-            Debug.Log("Wheel should turn");
             if (this.rearLeftWheelTransform == this.rearRightWheelTransform) return;
             UpdateWheelPose(this.rearLeftWheel, this.rearLeftWheelTransform);
         }
@@ -109,7 +108,6 @@ namespace ClownMeister.Navigation
 
         private void Accelerate()
         {
-            Debug.Log("Accelerating");
             float idealSpeed = this.currentSpeed * this.body.mass;
             this.frontLeftWheel.motorTorque = idealSpeed;
             this.frontRightWheel.motorTorque = idealSpeed;

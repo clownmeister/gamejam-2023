@@ -18,6 +18,7 @@ namespace ClownMeister.Navigation
             float closestDistanceSqr = Mathf.Infinity;
             foreach(VehicleNode potentialNode in Nodes)
             {
+                if (potentialNode.nodeType is VehicleNodeType.Start or VehicleNodeType.End) continue;
                 if (node == potentialNode) continue;
 
                 float sqrDistance = (potentialNode.transform.position - node.transform.position).sqrMagnitude;
@@ -37,6 +38,8 @@ namespace ClownMeister.Navigation
             float closestDistanceSqr = Mathf.Infinity;
             foreach(VehicleNode potentialNode in Nodes)
             {
+                if (potentialNode.nodeType is VehicleNodeType.Start or VehicleNodeType.End) continue;
+
                 float sqrDistance = (potentialNode.transform.position - position).sqrMagnitude;
 
                 if (sqrDistance >= closestDistanceSqr) continue;

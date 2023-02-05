@@ -25,6 +25,14 @@ namespace ClownMeister.Navigation
             Spawn();
         }
 
+        public static void RemoveCar(GameObject car)
+        {
+            if (Cars.Contains(car)) {
+                return;
+            }
+            Cars.Remove(car);
+        }
+
         public static void AddCar(GameObject car)
         {
             if (Cars.Contains(car)) {
